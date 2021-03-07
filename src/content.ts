@@ -34,3 +34,5 @@ chrome.runtime.onMessage.addListener((message: MessageTypes) => {
       break;
   }
 });
+
+console.log("hehhe");

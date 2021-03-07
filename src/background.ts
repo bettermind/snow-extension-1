@@ -41,3 +41,8 @@ chrome.runtime.onMessage.addListener((message: MessageTypes) => {
       break;
   }
 });
+
+// Retrieve the recently added bookmarks
+// chrome.bookmarks
+
+console.log("test")
