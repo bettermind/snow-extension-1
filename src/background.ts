@@ -45,4 +45,17 @@ chrome.runtime.onMessage.addListener((message: MessageTypes) => {
 // Retrieve the recently added bookmarks
 // chrome.bookmarks
 
-console.log("test")
+chrome.bookmarks.onCreated.addListener(function handleCreated(id, node) {
+  console.log(`CREATED tab ${id} on ${node.parentId}`);
+
+  console.log(`MOVEING (DEFAULT) tab ${node.id} to parent ${node.parentId}`);
+  chrome.bookmarks.move(id, {parentId: '2'}, function afterMove(node) {
+    console.log(`MOVED (DEFAULT) tab ${node.id} to parent ${node.parentId}`);
+  });
+});
+
+chrome.bookmarks.onMoved.addListener(function handleMove(id, moveInfo) {
+  console.log(`MOVE tab ${id} from ${moveInfo.oldParentId} to ${moveInfo.parentId}`);
+});
+
+console.log("working");
